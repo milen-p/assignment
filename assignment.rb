@@ -53,20 +53,29 @@ end
 
 # modify EC2 instance(s)
 unless instance_type == ''
-  ec2_instance['Resources']['EC2Instance']['Properties']['InstanceType'] = instance_type
+  ec2_instance['Resources']\
+              ['EC2Instance']\
+              ['Properties']\
+              ['InstanceType'] = instance_type
 end
 
 instance_security_group = ec2_instance['Resources']['InstanceSecurityGroup']
 ec2_instance['Resources'].delete('InstanceSecurityGroup')
 
 (instances.to_i - 1).times do |i|
-  ec2_instance['Resources']["EC2Instance#{i + 2}"] = ec2_instance['Resources']['EC2Instance']
+  ec2_instance['Resources']\
+              ["EC2Instance#{i + 2}"] = ec2_instance['Resources']\
+                                                    ['EC2Instance']
 end
 
 unless allow_ssh_from == ''
-  instance_security_group['Properties']['SecurityGroupIngress'][0]['CidrIp'] = allow_ssh_from+'/32'
+  instance_security_group['Properties']\
+                         ['SecurityGroupIngress']\
+                         [0]\
+                         ['CidrIp'] = allow_ssh_from + '/32'
 end
-ec2_instance['Resources']['InstanceSecurityGroup'] = instance_security_group
+ec2_instance['Resources']\
+            ['InstanceSecurityGroup'] = instance_security_group
 
 # output
 puts JSON.pretty_generate(ec2_instance)

@@ -1,3 +1,4 @@
+# rubocop:disable LineLength
 # Assignment:
 
 # should give Output #1
