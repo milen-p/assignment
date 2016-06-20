@@ -1,4 +1,4 @@
-# Sentia - assigment.rb - Milen Petrov 2016-06-19
+# Sentia - assigment.rb - Milen Petrov 2016-06-20
 
 # get command options
 require 'getoptlong'
@@ -64,11 +64,11 @@ ec2_instance['Resources'].delete('InstanceSecurityGroup')
 end
 
 unless allow_ssh_from == ''
-  instance_security_group['Properties']['SecurityGroupIngress'][0]['CidrIp'] = allow_ssh_from
+  instance_security_group['Properties']['SecurityGroupIngress'][0]['CidrIp'] = allow_ssh_from+'/32'
 end
 ec2_instance['Resources']['InstanceSecurityGroup'] = instance_security_group
 
 # output
 puts JSON.pretty_generate(ec2_instance)
 
-puts # Finished
+# Finished
