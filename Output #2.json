@@ -1,5 +1,5 @@
 {
-  "AWSTemplateFormatVersion": "2010­09­09",
+  "AWSTemplateFormatVersion": "2010­-09­-09",
   "Outputs": {
     "PublicIP": {
       "Description": "Public IP address of the newly created EC2 instance",
